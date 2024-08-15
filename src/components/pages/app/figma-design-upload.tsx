@@ -1,0 +1,114 @@
+'use client';
+
+import { useFigmaDesignUploadStore } from '@/client/client/figma-design-upload.store';
+import { Button } from '@/components/ui/button';
+import { CircleX, ImageUp } from 'lucide-react';
+import React from 'react';
+import { toast } from 'sonner';
+
+export function FigmaDesignUpload() {
+  const [loading, setLoading] = React.useState(false);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const file = useFigmaDesignUploadStore((state) => state.file);
+  const blob = useFigmaDesignUploadStore((state) => state.blob);
+  const updateBlob = useFigmaDesignUploadStore((state) => state.updateBlob);
+  const updateFile = useFigmaDesignUploadStore((state) => state.updateFile);
+
+  function updateFiles(inputFiles: FileList | null) {
+    if (!inputFiles) return;
+
+    setLoading(true);
+    const file = inputFiles[0];
+
+    // Toast for correct file format
+    if (!inputFiles[0].type.startsWith('image')) {
+      toast.warning('Invalid file format!', { description: 'Please select image file format' });
+      setLoading(false);
+      return;
+    }
+
+    // Toast for correct file size
+    // if (file.size >= 1024 * 1024 * 5) {
+    //   toast.warning('File size exceeded!', { description: 'File size must have at most 5MB' });
+    //   return;
+    // }
+
+    const blob = URL.createObjectURL(file);
+    updateBlob({ url: blob, status: true });
+
+    updateFile(file);
+    setLoading(false);
+  }
+
+  function dragPreventDefault(e: React.DragEvent<HTMLDivElement>) {
+    e.preventDefault();
+  }
+
+  function handleDrop(e: React.DragEvent<HTMLDivElement>) {
+    dragPreventDefault(e);
+
+    updateFiles(e.dataTransfer.files);
+  }
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const inputFiles = e.target.files;
+    updateFiles(inputFiles);
+  }
+
+  // Preview thumbnail
+  if (blob.status) {
+    return (
+      <div>
+        <div className='h-[60vh] bg-muted/50 rounded-md p-2'>
+          <img
+            src={blob.url}
+            className={'w-full h-full object-contain rounded-md'}
+            alt={file?.name}
+            width={240}
+            height={160}
+            style={{
+              aspectRatio: '240/160',
+            }}
+          />
+        </div>
+        <div className='flex items-center justify-center gap-4 mt-4 max-w-96 mx-auto'>
+          <p className='w-full bg-muted rounded-md text-sm px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2 font-medium text-muted-foreground'>
+            {file?.name}
+          </p>
+          <div>
+            <Button
+              className='text-muted-foreground hover:text-foreground'
+              type='button'
+              variant='secondary'
+              size='icon'
+              onClick={() => {
+                updateBlob({ url: '', status: false });
+                updateFile(null);
+              }}
+              disabled={loading}
+            >
+              <CircleX size={14} />
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <div
+        className='border rounded-md h-[60vh] bg-muted/50 text-muted-foreground text-sm flex items-center justify-center flex-col hover:cursor-pointer'
+        onClick={() => inputRef.current?.click()}
+        onDragEnter={dragPreventDefault}
+        onDragLeave={dragPreventDefault}
+        onDragOver={dragPreventDefault}
+        onDrop={handleDrop}
+      >
+        <ImageUp size={22} strokeWidth={1.5} />
+        <p className='mt-3'>Upload Figma Design</p>
+      </div>
+      <input ref={inputRef} id='app-image' className='hidden' type='file' multiple={false} accept='.jpg,.png,.jpeg,.webp' onChange={handleChange} />
+    </React.Fragment>
+  );
+}
