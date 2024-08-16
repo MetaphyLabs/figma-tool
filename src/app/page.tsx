@@ -1,14 +1,5 @@
-import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default function Page() {
-  return (
-    <main>
-      <section>
-        <div>
-          <p>Hello World</p>
-          <Link href='/app'>App</Link>
-        </div>
-      </section>
-    </main>
-  );
+  redirect('/app');
 }
