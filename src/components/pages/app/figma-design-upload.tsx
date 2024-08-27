@@ -2,7 +2,7 @@
 
 import { useFigmaDesignUploadStore } from '@/client/client/figma-design-upload.store';
 import { Button } from '@/components/ui/button';
-import { CircleX, ImageUp } from 'lucide-react';
+import { CircleX, CloudUpload, ImageUp } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
@@ -98,17 +98,25 @@ export function FigmaDesignUpload() {
   return (
     <React.Fragment>
       <div
-        className='border rounded-md h-[60vh] bg-muted/50 text-muted-foreground text-sm flex items-center justify-center flex-col hover:cursor-pointer'
+        className="border rounded-md h-[60vh] bg-muted/50 text-muted-foreground text-sm flex items-center justify-center flex-col hover:cursor-pointer"
         onClick={() => inputRef.current?.click()}
         onDragEnter={dragPreventDefault}
         onDragLeave={dragPreventDefault}
         onDragOver={dragPreventDefault}
         onDrop={handleDrop}
       >
-        <ImageUp size={22} strokeWidth={1.5} />
-        <p className='mt-3'>Upload Figma Design</p>
+        <CloudUpload size={82} strokeWidth={1.5} />
+        <p className="mt-3">Upload Figma Design</p>
       </div>
-      <input ref={inputRef} id='app-image' className='hidden' type='file' multiple={false} accept='.jpg,.png,.jpeg,.webp' onChange={handleChange} />
+      <input
+        ref={inputRef}
+        id="app-image"
+        className="hidden"
+        type="file"
+        multiple={false}
+        accept=".jpg,.png,.jpeg,.webp"
+        onChange={handleChange}
+      />
     </React.Fragment>
   );
 }

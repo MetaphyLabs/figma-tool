@@ -7,7 +7,7 @@ import { DesignCompare } from '@/components/pages/app/design-compare';
 import { FigmaDesignUpload } from '@/components/pages/app/figma-design-upload';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Blend, Component, FlipHorizontal , ChartBar} from 'lucide-react';
+import { Blend, Component, FlipHorizontal , BrainCircuit } from 'lucide-react';
 import React from 'react';
 
 const TABS = [
@@ -37,7 +37,7 @@ const TABS = [
   },
   {
     name: 'Analyze',
-    icon: ChartBar,
+    icon: BrainCircuit,
     value: 'analyze',
     tooltip: 'Analyze',
   }
