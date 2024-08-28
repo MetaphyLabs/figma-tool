@@ -2,7 +2,7 @@
 
 import { useAppDesignUploadStore } from '@/client/client/app-design-upload.store';
 import { Button } from '@/components/ui/button';
-import { CircleX, ImageUp } from 'lucide-react';
+import { CircleX, CloudUpload, ImageUp } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
@@ -105,7 +105,7 @@ export function AppDesignUpload() {
         onDragOver={dragPreventDefault}
         onDrop={handleDrop}
       >
-        <ImageUp size={22} strokeWidth={1.5} />
+        <CloudUpload size={82} strokeWidth={1.5} />
         <p className='mt-3'>Upload App Design</p>
       </div>
       <input ref={inputRef} id='app-image' className='hidden' type='file' multiple={false} accept='.jpg,.png,.jpeg,.webp' onChange={handleChange} />
