@@ -1,25 +1,30 @@
-import { ICONS } from '@/components/global/icons';
 import { TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Component } from 'lucide-react';
+import { Blend, BrainCircuit, FlipHorizontal } from 'lucide-react';
 import React from 'react';
 
 const TABS = [
   {
-    name: 'Figma design upload',
-    icon: ICONS.figma,
-    value: 'figma-design-upload',
-    tooltip: 'Figma Design',
+    name: 'Opacity difference',
+    icon: Blend,
+    value: 'opacity-difference',
+    tooltip: 'Blend',
   },
   {
-    name: 'App design',
-    icon: Component,
-    value: 'app-design',
-    tooltip: 'App Design',
+    name: 'Slider difference',
+    icon: FlipHorizontal,
+    value: 'slider-difference',
+    tooltip: 'Flip Horizontal',
+  },
+  {
+    name: 'Analyze',
+    icon: BrainCircuit,
+    value: 'analyze',
+    tooltip: 'Analyze',
   },
 ];
 
-export function AppUpload() {
+export function Toolbox() {
   return (
     <React.Fragment>
       {TABS.map((tab) => (
