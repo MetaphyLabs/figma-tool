@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "pnpm biome format --write ./src",
-    "lint": "pnpm biome lint ./src --apply",
-    "check": "pnpm biome check ./src --apply"
+    "format": "pnpm biome format --write .",
+    "lint": "biome lint . --write",
+    "check": "biome check ./src --apply"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.1",

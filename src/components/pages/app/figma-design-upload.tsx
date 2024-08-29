@@ -98,7 +98,7 @@ export function FigmaDesignUpload() {
   return (
     <React.Fragment>
       <div
-        className="border rounded-md h-[60vh] bg-muted/50 text-muted-foreground text-sm flex items-center justify-center flex-col hover:cursor-pointer"
+        className='border rounded-md h-[60vh] bg-muted/50 text-muted-foreground text-sm flex items-center justify-center flex-col hover:cursor-pointer'
         onClick={() => inputRef.current?.click()}
         onDragEnter={dragPreventDefault}
         onDragLeave={dragPreventDefault}
@@ -106,17 +106,9 @@ export function FigmaDesignUpload() {
         onDrop={handleDrop}
       >
         <CloudUpload size={82} strokeWidth={1.5} />
-        <p className="mt-3">Upload Figma Design</p>
+        <p className='mt-3'>Upload Figma Design</p>
       </div>
-      <input
-        ref={inputRef}
-        id="app-image"
-        className="hidden"
-        type="file"
-        multiple={false}
-        accept=".jpg,.png,.jpeg,.webp"
-        onChange={handleChange}
-      />
+      <input ref={inputRef} id='app-image' className='hidden' type='file' multiple={false} accept='.jpg,.png,.jpeg,.webp' onChange={handleChange} />
     </React.Fragment>
   );
 }

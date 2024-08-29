@@ -2,7 +2,6 @@ import { create } from 'zustand';
 
 type State = {
   text: string | null;
-  
 };
 
 type Action = {
@@ -12,5 +11,4 @@ type Action = {
 export const useAnalysisStore = create<State & Action>()((set) => ({
   text: null,
   updateText: (text) => set(() => ({ text: text })),
-  
 }));
