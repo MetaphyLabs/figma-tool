@@ -144,7 +144,7 @@ function Point({ val, parentRef, setCoordinates, index, distance }: PointProps) 
       {index === 1 && (
         <div className='whitespace-nowrap text-xs bg-background text-muted-foreground border rounded-sm py-0.5 px-1.5 w-max -translate-x-[calc(50%_-_4px)] -translate-y-[calc(100%_+_4px)]'>
           <span>
-            ({distance.x}, {distance.y})
+            x: {distance.x}px <br /> y: {distance.y}px
           </span>
         </div>
       )}
