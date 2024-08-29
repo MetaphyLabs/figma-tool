@@ -1,8 +1,8 @@
 'use client';
 
-import { useFigmaDesignUploadStore } from '@/client/client/figma-design-upload.store';
+import { useFigmaDesignUploadStore } from '@/client/store/figma-design-upload.store';
 import { Button } from '@/components/ui/button';
-import { CircleX, CloudUpload, ImageUp } from 'lucide-react';
+import { CircleX, CloudUpload } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 

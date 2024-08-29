@@ -1,7 +1,7 @@
 'use client';
 
-import { useAppDesignUploadStore } from '@/client/client/app-design-upload.store';
-import { useFigmaDesignUploadStore } from '@/client/client/figma-design-upload.store';
+import { useAppDesignUploadStore } from '@/client/store/app-design-upload.store';
+import { useFigmaDesignUploadStore } from '@/client/store/figma-design-upload.store';
 import { Slider } from '@/components/ui/slider';
 import React from 'react';
 import { PixelMeasureWrapper } from './tool-box/base-tool-box';

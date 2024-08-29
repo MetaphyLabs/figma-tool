@@ -1,8 +1,8 @@
 'use client';
 
-import { useAnalysisStore } from '@/client/client/analysis.store';
-import { useAppDesignUploadStore } from '@/client/client/app-design-upload.store';
-import { useFigmaDesignUploadStore } from '@/client/client/figma-design-upload.store';
+import { useAnalysisStore } from '@/client/store/analysis.store';
+import { useAppDesignUploadStore } from '@/client/store/app-design-upload.store';
+import { useFigmaDesignUploadStore } from '@/client/store/figma-design-upload.store';
 import axios from 'axios';
 import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';

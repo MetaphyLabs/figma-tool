@@ -1,8 +1,8 @@
 'use client';
 
-import { useAppDesignUploadStore } from '@/client/client/app-design-upload.store';
+import { useAppDesignUploadStore } from '@/client/store/app-design-upload.store';
 import { Button } from '@/components/ui/button';
-import { CircleX, CloudUpload, ImageUp } from 'lucide-react';
+import { CircleX, CloudUpload } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 

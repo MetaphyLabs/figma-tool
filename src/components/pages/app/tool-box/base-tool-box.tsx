@@ -1,8 +1,8 @@
 'use client';
 
-import { useAppDesignUploadStore } from '@/client/client/app-design-upload.store';
-import { useFigmaDesignUploadStore } from '@/client/client/figma-design-upload.store';
-import { useToolboxstore } from '@/client/client/toolbox.store';
+import { useAppDesignUploadStore } from '@/client/store/app-design-upload.store';
+import { useFigmaDesignUploadStore } from '@/client/store/figma-design-upload.store';
+import { useToolboxstore } from '@/client/store/toolbox.store';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { Route } from 'lucide-react';
