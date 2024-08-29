@@ -1,12 +1,12 @@
 'use client';
 
+import { useAnalysisStore } from '@/client/client/analysis.store';
 import { useAppDesignUploadStore } from '@/client/client/app-design-upload.store';
 import { useFigmaDesignUploadStore } from '@/client/client/figma-design-upload.store';
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ReactMarkdown from 'react-markdown';
-import { useAnalysisStore } from '@/client/client/analysis.store';
 import { Loader2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 async function imageToBase64(url: string): Promise<string> {
   const response = await fetch(url);
@@ -92,7 +92,7 @@ export default function Analyze() {
         try {
           const result = await getAnalysis(figmaImageData, appImageData);
           setAnalysis(result);
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         } catch (error: any) {
           setAnalysis(`Error: ${error.message}`);
         } finally {

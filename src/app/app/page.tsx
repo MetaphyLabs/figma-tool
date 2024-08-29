@@ -5,9 +5,10 @@ import { AppHeader } from '@/components/pages/app/app-header/base-app-header';
 import { DesignBlend } from '@/components/pages/app/design-blend';
 import { DesignCompare } from '@/components/pages/app/design-compare';
 import { FigmaDesignUpload } from '@/components/pages/app/figma-design-upload';
+import { ToolBox } from '@/components/pages/app/tool-box/base-tool-box';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Blend, Component, FlipHorizontal , BrainCircuit } from 'lucide-react';
+import { Blend, BrainCircuit, Component, FlipHorizontal } from 'lucide-react';
 import React from 'react';
 
 const TABS = [
@@ -40,7 +41,7 @@ const TABS = [
     icon: BrainCircuit,
     value: 'analyze',
     tooltip: 'Analyze',
-  }
+  },
 ];
 
 export default function Page() {
@@ -50,7 +51,7 @@ export default function Page() {
       <main>
         <section>
           <Tabs defaultValue='figma-design-upload' className='w-full'>
-            <div className='fixed bottom-3 left-1/2 -translate-x-1/2'>
+            <div className='fixed bottom-3 left-1/2 -translate-x-1/2 flex items-stretch justify-center gap-4'>
               <TabsList className='h-auto gap-2'>
                 {TABS.map((tab) => (
                   <TooltipProvider key={tab.value}>
@@ -68,6 +69,7 @@ export default function Page() {
                   </TooltipProvider>
                 ))}
               </TabsList>
+              <ToolBox />
             </div>
 
             <TabsContent value='figma-design-upload' className='px-6 mt-4'>
