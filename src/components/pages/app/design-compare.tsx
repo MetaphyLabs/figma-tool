@@ -9,7 +9,7 @@ export function DesignCompare() {
   const appBlob = useAppDesignUploadStore((state) => state.blob);
 
   return (
-    <div className='bg-muted/50 rounded-md h-[60vh] p-2'>
+    <div className='bg-muted/50 rounded-md h-[85vh] p-2'>
       <Compare
         firstImage={figmaBlob.url}
         secondImage={appBlob.url}

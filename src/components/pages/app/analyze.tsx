@@ -106,7 +106,7 @@ export default function Analyze() {
 
   return (
     <div className='bg-muted/50 rounded-md'>
-      <div className='relative h-[60vh] p-4 overflow-y-auto'>
+      <div className='relative h-[85vh] p-4 overflow-y-auto'>
         {isLoading ? (
           <div className='flex flex-col items-center justify-center h-full space-y-4'>
             <Loader2 className='w-12 h-12 animate-spin text-primary' />

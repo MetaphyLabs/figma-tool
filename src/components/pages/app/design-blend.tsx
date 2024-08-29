@@ -14,7 +14,7 @@ export function DesignBlend() {
   return (
     <div>
       <div className='bg-muted/50 rounded-md'>
-        <div className='relative h-[60vh] p-2'>
+        <div className='relative h-[82vh] p-2'>
           <img
             src={figmaBlob.url}
             className='w-full h-full object-contain rounded-md'
