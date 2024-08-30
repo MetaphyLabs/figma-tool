@@ -1,4 +1,4 @@
-import { Modes } from './change-mode/base-change-mode';
+import { Modes } from './mix-blend-mode/base-change-mode';
 import { PixelMeasure } from './pixel-measure/pixel-measure-tool';
 
 export const tools = {
