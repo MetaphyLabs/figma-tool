@@ -4,7 +4,7 @@ import { useAppDesignUploadStore } from '@/client/store/app-design-upload.store'
 import { useFigmaDesignUploadStore } from '@/client/store/figma-design-upload.store';
 import { Slider } from '@/components/ui/slider';
 import React from 'react';
-import { PixelMeasureWrapper } from './toolbox/tools/base-tools';
+import { PixelMeasureProvider } from './toolbox/tools/pixel-measure/pixel-measure-provider';
 
 export function DesignBlend() {
   const [opacity, setOpacity] = React.useState([0.5]);
@@ -15,7 +15,7 @@ export function DesignBlend() {
   return (
     <div>
       <div className='bg-muted/50 rounded-md'>
-        <PixelMeasureWrapper>
+        <PixelMeasureProvider>
           <div className='relative h-[60vh] p-2'>
             <img
               src={figmaBlob.url}
@@ -36,7 +36,7 @@ export function DesignBlend() {
               />
             </div>
           </div>
-        </PixelMeasureWrapper>
+        </PixelMeasureProvider>
       </div>
       <div className='max-w-md mx-auto mt-4'>
         <Slider defaultValue={opacity} min={0.05} max={1} step={0.01} value={opacity} onValueChange={(val) => setOpacity(val)} />
