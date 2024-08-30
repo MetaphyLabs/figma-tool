@@ -11,6 +11,7 @@ interface CompareProps {
   className?: string;
   firstImageClassName?: string;
   secondImageClassname?: string;
+  firstImageStyle?: React.CSSProperties;
   secondImageStyle?: React.CSSProperties;
   initialSliderPercentage?: number;
   slideMode?: 'hover' | 'drag';
@@ -24,6 +25,7 @@ export const Compare = ({
   className,
   firstImageClassName,
   secondImageClassname,
+  firstImageStyle,
   secondImageStyle,
   initialSliderPercentage = 50,
   showHandlebar = true,
@@ -176,7 +178,7 @@ export const Compare = ({
           )}
         </motion.div>
       </AnimatePresence>
-      <div className='overflow-hidden w-full h-full relative z-20 pointer-events-none'>
+      <div style={firstImageStyle} className='overflow-hidden w-full h-full relative z-20 pointer-events-none'>
         <AnimatePresence initial={false}>
           {firstImage ? (
             <motion.div

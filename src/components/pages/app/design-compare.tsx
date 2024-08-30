@@ -13,11 +13,11 @@ export function DesignCompare() {
   return (
     <div className='bg-muted/50 rounded-md h-[85vh] p-2'>
       <Compare
-        firstImage={figmaBlob.url}
-        secondImage={appBlob.url}
+        firstImage={appBlob.url}
+        secondImage={figmaBlob.url}
         firstImageClassName='object-contain'
         secondImageClassname='object-contain'
-        secondImageStyle={{ mixBlendMode: mode }}
+        firstImageStyle={{ mixBlendMode: mode }}
         className='w-full h-full'
         slideMode='hover'
       />
