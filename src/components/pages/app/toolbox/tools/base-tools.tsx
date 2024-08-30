@@ -8,9 +8,9 @@ import { motion } from 'framer-motion';
 import { Route } from 'lucide-react';
 import React, { useRef } from 'react';
 
-export function ToolBox() {
+export function Tools() {
   return (
-    <div className=''>
+    <div>
       <PixelMeasure />
     </div>
   );

@@ -5,7 +5,6 @@ import { DesignBlend } from '@/components/pages/app/design-blend';
 import { DesignCompare } from '@/components/pages/app/design-compare';
 import { FigmaDesignUpload } from '@/components/pages/app/figma-design-upload';
 import { Toolbox as BaseToolbox } from '@/components/pages/app/toolbox/base-toolbox';
-import { ToolBox } from '@/components/pages/app/toolbox/tools/base-tools';
 import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs';
 import React from 'react';
 
@@ -25,7 +24,6 @@ export default function Page() {
               <TabsList className='h-auto gap-2'>
                 <BaseToolbox />
               </TabsList>
-              <ToolBox />
             </div>
 
             <TabsContent value='figma-design-upload' className='px-6 mt-4'>

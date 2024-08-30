@@ -2,6 +2,7 @@ import { TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Blend, BrainCircuit, FlipHorizontal } from 'lucide-react';
 import React from 'react';
+import { Tools as BaseTools } from './tools/base-tools';
 
 const TABS = [
   {
@@ -42,6 +43,7 @@ export function Toolbox() {
           </Tooltip>
         </TooltipProvider>
       ))}
+      <BaseTools />
     </React.Fragment>
   );
 }
