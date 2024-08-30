@@ -59,7 +59,7 @@ export function FigmaDesignUpload() {
   if (blob.status) {
     return (
       <div>
-        <div className='h-[60vh] bg-muted/50 rounded-md p-2'>
+        <div className='h-[85vh] bg-muted/50 rounded-md p-2'>
           <img
             src={blob.url}
             className={'w-full h-full object-contain rounded-md'}
@@ -98,7 +98,7 @@ export function FigmaDesignUpload() {
   return (
     <React.Fragment>
       <div
-        className='border rounded-md h-[60vh] bg-muted/50 text-muted-foreground text-sm flex items-center justify-center flex-col hover:cursor-pointer'
+        className='border rounded-md h-[85vh] bg-muted/50 text-muted-foreground text-sm flex items-center justify-center flex-col hover:cursor-pointer'
         onClick={() => inputRef.current?.click()}
         onDragEnter={dragPreventDefault}
         onDragLeave={dragPreventDefault}

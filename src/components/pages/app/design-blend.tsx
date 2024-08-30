@@ -16,7 +16,7 @@ export function DesignBlend() {
     <div>
       <div className='bg-muted/50 rounded-md'>
         <PixelMeasureProvider>
-          <div className='relative h-[60vh] p-2'>
+          <div className='relative h-[80vh] p-2'>
             <img
               src={figmaBlob.url}
               className='w-full h-full object-contain rounded-md'

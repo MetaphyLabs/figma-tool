@@ -11,7 +11,7 @@ export function DesignCompare() {
   const mode = useMode((state) => state.mode);
 
   return (
-    <div className='bg-muted/50 rounded-md h-[60vh] p-2'>
+    <div className='bg-muted/50 rounded-md h-[85vh] p-2'>
       <Compare
         firstImage={figmaBlob.url}
         secondImage={appBlob.url}
