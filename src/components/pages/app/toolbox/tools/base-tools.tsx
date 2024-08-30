@@ -1,37 +1,43 @@
 'use client';
 
-import { useAppDesignUploadStore } from '@/client/store/app-design-upload.store';
-import { useFigmaDesignUploadStore } from '@/client/store/figma-design-upload.store';
-import { useToolboxstore } from '@/client/store/toolbox.store';
-import { Button } from '@/components/ui/button';
-import { Route } from 'lucide-react';
+import { Fragment } from 'react';
+import { tools } from './tools.constants';
 
-export function Tools() {
+interface ToolsProps {
+  tab: string;
+}
+
+export function Tools({ tab }: ToolsProps) {
   return (
-    <div>
-      <PixelMeasure />
-    </div>
+    <Fragment>
+      {tools[tab as keyof typeof tools]?.map((Tool, index) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+        <Tool key={index} />
+      ))}
+    </Fragment>
   );
 }
 
-function PixelMeasure() {
-  const { active } = useToolboxstore((state) => state.pixelMeasure);
-  const updatePixelMeasure = useToolboxstore((state) => state.updatePixelMeasure);
-  const appDesignStoreBlob = useAppDesignUploadStore((state) => state.blob);
-  const figmaDesignStoreBlob = useFigmaDesignUploadStore((state) => state.blob);
-
-  function handleClick() {
-    if (!appDesignStoreBlob.status || !figmaDesignStoreBlob.status) {
-      updatePixelMeasure((prev) => ({ ...prev, active: false }));
-      return;
-    }
-
-    updatePixelMeasure((prev) => ({ ...prev, active: !prev.active }));
-  }
-
-  return (
-    <Button className={`h-full ${active ? '' : 'text-muted-foreground'}`} variant={active ? 'default' : 'secondary'} onClick={handleClick}>
-      <Route size={20} />
-    </Button>
-  );
-}
+// export function Tools({ tab }: ToolsProps) {
+//   return (
+//     <Fragment>
+//       <AnimatePresence mode='wait'>
+//         {tools[tab as keyof typeof tools]?.map((Tool, index) => (
+//           // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+//           <AnimatePresence key={index} mode='wait'>
+//             <motion.div
+//               // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+//               key={index}
+//               className='overflow-hidden bg-red-200'
+//               initial={{ opacity: 0, width: '0px' }}
+//               animate={{ opacity: 1, width: 'auto' }}
+//               exit={{ opacity: 0, width: '0px', transition: { duration: 0.3 } }}
+//             >
+//               <Tool />
+//             </motion.div>
+//           </AnimatePresence>
+//         ))}
+//       </AnimatePresence>
+//     </Fragment>
+//   );
+// }

@@ -4,44 +4,45 @@ import { AppHeader } from '@/components/pages/app/app-header/base-app-header';
 import { DesignBlend } from '@/components/pages/app/design-blend';
 import { DesignCompare } from '@/components/pages/app/design-compare';
 import { FigmaDesignUpload } from '@/components/pages/app/figma-design-upload';
-import { Toolbox as BaseToolbox } from '@/components/pages/app/toolbox/base-toolbox';
-import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs';
+import { Mode } from '@/components/pages/app/mode';
+import { Toolbox } from '@/components/pages/app/toolbox/base-toolbox';
+import { TabsContent } from '@/components/ui/tabs';
 import React from 'react';
 
-import { AppUpload as BaseAppUpload } from '@/components/pages/app/app-upload/base-app-upload';
-
 export default function Page() {
+  function TabContent() {
+    return (
+      <React.Fragment>
+        <TabsContent value='figma-design-upload' className='px-6 mt-4'>
+          <FigmaDesignUpload />
+        </TabsContent>
+        <TabsContent value='app-design' className='px-6 mt-4'>
+          <AppDesignUpload />
+        </TabsContent>
+        <TabsContent value='opacity-difference' className='px-6 mt-4'>
+          <DesignBlend />
+        </TabsContent>
+        <TabsContent value='slider-difference' className='px-6 mt-4'>
+          <DesignCompare />
+        </TabsContent>
+        <TabsContent value='analyze' className='px-6 mt-4'>
+          <Analyze />
+        </TabsContent>
+        <TabsContent value='mode' className='px-6 mt-4'>
+          <Mode />
+        </TabsContent>
+      </React.Fragment>
+    );
+  }
+
   return (
     <React.Fragment>
       <AppHeader />
       <main>
         <section>
-          <Tabs defaultValue='figma-design-upload' className='w-full'>
-            <div className='fixed bottom-3 left-1/2 -translate-x-1/2 flex items-stretch justify-center gap-2.5'>
-              <TabsList className='h-auto gap-2'>
-                <BaseAppUpload />
-              </TabsList>
-              <TabsList className='h-auto gap-2'>
-                <BaseToolbox />
-              </TabsList>
-            </div>
-
-            <TabsContent value='figma-design-upload' className='px-6 mt-4'>
-              <FigmaDesignUpload />
-            </TabsContent>
-            <TabsContent value='app-design' className='px-6 mt-4'>
-              <AppDesignUpload />
-            </TabsContent>
-            <TabsContent value='opacity-difference' className='px-6 mt-4'>
-              <DesignBlend />
-            </TabsContent>
-            <TabsContent value='slider-difference' className='px-6 mt-4'>
-              <DesignCompare />
-            </TabsContent>
-            <TabsContent value='analyze' className='px-6 mt-4'>
-              <Analyze />
-            </TabsContent>
-          </Tabs>
+          <Toolbox>
+            <TabContent />
+          </Toolbox>
         </section>
       </main>
     </React.Fragment>
