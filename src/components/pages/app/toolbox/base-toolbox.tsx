@@ -23,16 +23,16 @@ const TABS = [
     tooltip: 'Flip Horizontal',
   },
   {
-    name: 'Analyze',
-    icon: BrainCircuit,
-    value: 'analyze',
-    tooltip: 'Analyze',
-  },
-  {
     name: 'Mode',
     icon: Eclipse,
     value: 'mode',
     tooltip: 'Mode',
+  },
+  {
+    name: 'Analyze',
+    icon: BrainCircuit,
+    value: 'analyze',
+    tooltip: 'Analyze',
   },
 ];
 

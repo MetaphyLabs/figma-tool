@@ -43,7 +43,7 @@ export function Modes() {
                 <Button
                   className={`h-full relative ${active ? '' : 'text-muted-foreground'}`}
                   variant={active ? 'default' : 'secondary'}
-                  onClick={() => updateMode(val.value)}
+                  onClick={() => updateMode(active ? 'normal' : val.value)}
                 >
                   <val.Icon size={20} />
                 </Button>

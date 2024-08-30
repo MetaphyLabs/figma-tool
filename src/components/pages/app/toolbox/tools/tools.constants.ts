@@ -3,7 +3,7 @@ import { PixelMeasure } from './pixel-measure/pixel-measure-tool';
 
 export const tools = {
   'opacity-difference': [PixelMeasure],
-  'slider-difference': [],
+  'slider-difference': [Modes],
   analyze: [],
   mode: [Modes],
 };
