@@ -15,7 +15,7 @@ export function Mode() {
 
   return (
     <div>
-      <div className='bg-muted/50 rounded-md'>
+      <div className='bg-muted dark:bg-muted/60 rounded-md'>
         <PixelMeasureProvider>
           <div className='relative h-[60vh] p-2'>
             <img

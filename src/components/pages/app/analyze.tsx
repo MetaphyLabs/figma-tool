@@ -105,7 +105,7 @@ export default function Analyze() {
   }, [figmaImageData, appImageData, analysis, setAnalysis]);
 
   return (
-    <div className='bg-muted/50 rounded-md'>
+    <div className='bg-muted dark:bg-muted/60 rounded-md'>
       <div className='relative h-[85vh] p-4 overflow-y-auto'>
         {isLoading ? (
           <div className='flex flex-col items-center justify-center h-full space-y-4'>

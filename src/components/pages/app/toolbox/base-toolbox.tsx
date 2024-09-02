@@ -1,6 +1,12 @@
 'use client';
 
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Analyze from '@/components/pages/app/analyze';
+import { AppDesignUpload } from '@/components/pages/app/app-design-upload';
+import { DesignBlend } from '@/components/pages/app/design-blend';
+import { DesignCompare } from '@/components/pages/app/design-compare';
+import { FigmaDesignUpload } from '@/components/pages/app/figma-design-upload';
+import { Mode } from '@/components/pages/app/mode';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Blend, BrainCircuit, Eclipse, FlipHorizontal } from 'lucide-react';
@@ -36,13 +42,38 @@ const TABS = [
   },
 ];
 
-export function Toolbox({ children }: React.PropsWithChildren) {
+export function Toolbox() {
   const [tab, setTab] = React.useState('figma-design-upload');
+
+  function TabContent() {
+    return (
+      <React.Fragment>
+        <TabsContent key='figma-design-upload' value='figma-design-upload' className='px-4 mt-0'>
+          <FigmaDesignUpload />
+        </TabsContent>
+        <TabsContent key='app-design' value='app-design' className='px-4 mt-0'>
+          <AppDesignUpload />
+        </TabsContent>
+        <TabsContent value='opacity-difference' className='px-4 mt-0'>
+          <DesignBlend />
+        </TabsContent>
+        <TabsContent value='slider-difference' className='px-4 mt-0'>
+          <DesignCompare />
+        </TabsContent>
+        <TabsContent value='analyze' className='px-4 mt-0'>
+          <Analyze />
+        </TabsContent>
+        <TabsContent value='mode' className='px-4 mt-0'>
+          <Mode />
+        </TabsContent>
+      </React.Fragment>
+    );
+  }
 
   return (
     <React.Fragment>
       <Tabs defaultValue='figma-design-upload' className='w-full' value={tab} onValueChange={setTab}>
-        <motion.div className='fixed bottom-3 left-1/2 -translate-x-1/2 flex items-stretch justify-center gap-2.5'>
+        <motion.div className='fixed bottom-3 z-50 left-1/2 -translate-x-1/2 flex items-stretch justify-center gap-2.5'>
           <TabsList className='h-auto gap-2'>
             <BaseAppUpload />
           </TabsList>
@@ -76,7 +107,7 @@ export function Toolbox({ children }: React.PropsWithChildren) {
             <BaseTools tab={tab} />
           </TabsList>
         </motion.div>
-        {children}
+        <TabContent />
       </Tabs>
     </React.Fragment>
   );

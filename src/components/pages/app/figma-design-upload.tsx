@@ -2,6 +2,7 @@
 
 import { useFigmaDesignUploadStore } from '@/client/store/figma-design-upload.store';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 import { CircleX, CloudUpload } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
@@ -58,8 +59,8 @@ export function FigmaDesignUpload() {
   // Preview thumbnail
   if (blob.status) {
     return (
-      <div>
-        <div className='h-[85vh] bg-muted/50 rounded-md p-2'>
+      <div className='relative'>
+        <div className='h-[85vh] bg-muted dark:bg-muted/60 rounded-md p-2'>
           <img
             src={blob.url}
             className={'w-full h-full object-contain rounded-md'}
@@ -71,13 +72,17 @@ export function FigmaDesignUpload() {
             }}
           />
         </div>
-        <div className='flex items-center justify-center gap-4 mt-4 max-w-96 mx-auto'>
-          <p className='w-full bg-muted rounded-md text-sm px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2 font-medium text-muted-foreground'>
+        <motion.div
+          className='absolute top-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3 max-w-96 mx-auto'
+          initial={{ opacity: 0, top: 32 }}
+          animate={{ opacity: 1, top: 16 }}
+        >
+          <p className='w-full bg-muted/70 backdrop-blur-sm rounded-md text-sm px-4 whitespace-nowrap overflow-hidden text-ellipsis py-2 font-medium text-muted-foreground'>
             {file?.name}
           </p>
           <div>
             <Button
-              className='text-muted-foreground hover:text-foreground'
+              className='text-muted-foreground hover:text-foreground bg-muted/70 backdrop-blur-sm'
               type='button'
               variant='secondary'
               size='icon'
@@ -90,7 +95,7 @@ export function FigmaDesignUpload() {
               <CircleX size={14} />
             </Button>
           </div>
-        </div>
+        </motion.div>
       </div>
     );
   }
