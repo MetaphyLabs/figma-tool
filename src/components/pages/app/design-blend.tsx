@@ -12,11 +12,19 @@ export function DesignBlend() {
   const figmaBlob = useFigmaDesignUploadStore((state) => state.blob);
   const appBlob = useAppDesignUploadStore((state) => state.blob);
 
+   if (!figmaBlob.url || !appBlob.url) {
+    return (
+      <div className='flex flex-col items-center justify-center h-[75vh] bg-muted dark:bg-muted/60 rounded-md'>
+        <p className='text-lg text-muted-foreground'>Please upload both Figma and App design images to begin blending.</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className='bg-muted dark:bg-muted/60 rounded-md'>
         <PixelMeasureProvider>
-          <div className='relative h-[80vh] p-2'>
+          <div className='relative h-[75vh] p-2'>
             <img
               src={figmaBlob.url}
               className='w-full h-full object-contain rounded-md'

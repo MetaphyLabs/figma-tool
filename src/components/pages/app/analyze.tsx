@@ -7,7 +7,7 @@ import axios from 'axios';
 import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-
+import { v4 as uuidv4 } from 'uuid';
 async function imageToBase64(url: string): Promise<string> {
   const response = await fetch(url);
   const blob = await response.blob();
@@ -23,7 +23,7 @@ async function getAnalysis(figmaImageData: ImageData, appImageData: ImageData) {
   try {
     const figmaImage = await imageToBase64(figmaImageData.url);
     const appImage = await imageToBase64(appImageData.url);
-
+    console.log("I am here")
     const headers = {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
       'Content-Type': 'application/json',
@@ -37,9 +37,10 @@ async function getAnalysis(figmaImageData: ImageData, appImageData: ImageData) {
           content: [
             {
               type: 'text',
-              text: `Analyze if the coded output image is according to my design. Find each mistake or issue and suggest corrections. Give only the reasoning in beautiful markdown format, nothing else.
+              text: `Analyze if the coded output image is according to my design. Find each mistake or issue and suggest corrections.If you feel that the images are not at all a match that they are entirely two diffrent things. Then say that the Design and coded seems to be entirely different ones please check if the uploaded images are of right match pair. Give only the reasoning in beautiful markdown format, nothing else.
               Answer in this format:
-              **Issue**: IssueDescription (IssueSeverity) in nextline 
+              **Issue**: Issue Description 
+              **IssuePriority**: P0 or P1 or P2 
               **Correction**:`,
             },
             {
@@ -77,6 +78,13 @@ interface ImageData {
   status: boolean;
 }
 
+interface AnalysisData {
+  id: string;
+  figmaImage: string;
+  appImage: string;
+  analysis: string | null;
+}
+
 export default function Analyze() {
   const analysis = useAnalysisStore((state) => state.text);
   // const analysis = 'kdm'
@@ -84,6 +92,26 @@ export default function Analyze() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const figmaImageData = useFigmaDesignUploadStore((state) => state.blob) as ImageData;
   const appImageData = useAppDesignUploadStore((state) => state.blob) as ImageData;
+  // Check for ID in URL search params
+  const searchParams = new URLSearchParams(window.location.search);
+  const idFromUrl = searchParams.get('id');
+
+  // Load or initialize analysis data
+  const [analysisData, setAnalysisData] = useState<AnalysisData | null>(null);
+
+  useEffect(() => {
+    // Load from localStorage if ID exists
+    if (idFromUrl) {
+      const storedData = localStorage.getItem(idFromUrl);
+      if (storedData) {
+        setAnalysisData(JSON.parse(storedData));
+      }
+    } else {
+      // Generate new ID and initialize data
+      const newId = uuidv4();
+      setAnalysisData({ id: newId, figmaImage: '', appImage: '', analysis: null });
+    }
+  }, [idFromUrl]);
 
   useEffect(() => {
     const performAnalysis = async () => {
@@ -92,6 +120,16 @@ export default function Analyze() {
         try {
           const result = await getAnalysis(figmaImageData, appImageData);
           setAnalysis(result);
+          const updatedAnalysisData = {
+            ...analysisData,
+            figmaImage: figmaImageData.url!,
+            appImage: appImageData.url!,
+            analysis: result!,
+            id: analysisData?.id! || uuidv4(),
+          };
+          setAnalysisData(updatedAnalysisData);
+          localStorage.setItem(analysisData?.id!, JSON.stringify(updatedAnalysisData));
+
           // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         } catch (error: any) {
           setAnalysis(`Error: ${error.message}`);
@@ -102,11 +140,11 @@ export default function Analyze() {
     };
 
     performAnalysis();
-  }, [figmaImageData, appImageData, analysis, setAnalysis]);
+  }, [figmaImageData, appImageData, analysis, setAnalysis, analysisData]);
 
   return (
     <div className='bg-muted dark:bg-muted/60 rounded-md'>
-      <div className='relative h-[85vh] p-4 overflow-y-auto'>
+      <div className='relative h-[75vh] p-4 overflow-y-auto'>
         {isLoading ? (
           <div className='flex flex-col items-center justify-center h-full space-y-4'>
             <Loader2 className='w-12 h-12 animate-spin text-primary' />

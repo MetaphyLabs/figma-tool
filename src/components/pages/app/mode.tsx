@@ -17,7 +17,7 @@ export function Mode() {
     <div>
       <div className='bg-muted dark:bg-muted/60 rounded-md'>
         <PixelMeasureProvider>
-          <div className='relative h-[80vh] p-2'>
+          <div className='relative h-[75vh] p-2'>
             <img
               src={figmaBlob.url}
               className='w-full h-full object-contain rounded-md'

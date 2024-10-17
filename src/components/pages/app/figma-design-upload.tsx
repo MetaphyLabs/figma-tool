@@ -1,6 +1,7 @@
 'use client';
 
 import { useFigmaDesignUploadStore } from '@/client/store/figma-design-upload.store';
+import { BorderBeam } from '@/components/magicui/border-beam';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { CircleX, CloudUpload } from 'lucide-react';
@@ -60,7 +61,9 @@ export function FigmaDesignUpload() {
   if (blob.status) {
     return (
       <div className='relative'>
-        <div className='h-[85vh] bg-muted dark:bg-muted/60 rounded-md p-2'>
+        <div className='relative h-[75vh] bg-muted dark:bg-muted/60 rounded-md p-2'>
+          <BorderBeam size={250} duration={12} delay={9} />
+
           <img
             src={blob.url}
             className={'w-full h-full object-contain rounded-md'}
@@ -103,13 +106,15 @@ export function FigmaDesignUpload() {
   return (
     <React.Fragment>
       <div
-        className='border rounded-md h-[85vh] bg-muted/50 text-muted-foreground text-sm flex items-center justify-center flex-col hover:cursor-pointer'
+        className='relative border rounded-md h-[75vh] w-[97%]  bg-muted/50 p-2 text-muted-foreground text-sm flex items-center justify-center flex-col hover:cursor-pointer'
         onClick={() => inputRef.current?.click()}
         onDragEnter={dragPreventDefault}
         onDragLeave={dragPreventDefault}
         onDragOver={dragPreventDefault}
         onDrop={handleDrop}
       >
+        <BorderBeam size={300} duration={12} delay={10} />
+
         <CloudUpload size={82} strokeWidth={1.5} />
         <p className='mt-3'>Upload Figma Design</p>
       </div>
